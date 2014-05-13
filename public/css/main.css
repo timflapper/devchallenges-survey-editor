@@ -1,0 +1,27 @@
+.alert-fixed {
+  position: fixed;
+  width: 100%;
+}
+
+textarea.survey-description {
+  min-height: 280px;
+  font-size: 85%;
+}
+
+.survey-item  {
+  margin-top: 20px;
+}
+
+.survey-item h3 {
+  margin: 0;
+}
+
+.survey-item .panel-footer {
+  text-align: right;
+}
+
+.survey-item .panel-footer .btn {
+  margin-left: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}

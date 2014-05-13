@@ -1,0 +1,46 @@
+<div class="alert alert-danger alert-fixed" ng-if="error">{{ error.message }}</div>
+<form ng-if="section">
+	<div class="container section-main">
+		<h1>Edit section</h1>
+		<div class="form-group">
+			<label for="sectionName">Name</label>
+			<input type="text" class="form-control" name="name" id="sectionName" value="{{section.name}}">
+		</div>
+		<div class="form-group">
+			<label for="sectionDescription">Description</label>
+			<textarea name="description" class="form-control section-description" id="sectionDescription">
+{{section.description}}
+			</textarea>
+		</div>
+	</div>
+	<div class="container section-questions">
+		<h2>Questions <button class="btn btn-primary pull-right" ng-click="questionAdd()">Add question</button></h2>
+		<div class="panel panel-default survey-item" ng-repeat="(key, question) in section.questions" ng-controller="SurveysQuestionController">
+			<div class="panel-heading" in-place>
+				<h3 in-place-view class="panel-title"><span class="text-muted">{{ key + 1 }}.</span> {{ question.text }}</h3>
+				<div in-place-edit class="form-group">
+					<input in-place-focus class="form-control" type="text" name="questionText" value="{{ question.text }}">
+				</div>
+			</div>
+			<div class="panel-body" ng-if="question.description" in-place>
+				<p in-place-view class="text-muted" ng-click="questionFieldEdit('description', question.id)">{{ question.description }}</p>
+				<div in-place-edit class="form-group">
+					<input in-place-focus class="form-control" type="text" name="questionDescription" value="{{ question.description }}">
+				</div>				
+			</div>
+			<div class="list-group">
+				<div class="list-group-item">
+					<div class="form-group">
+						<label for="questionType">Type</label>
+						<select name="questionType" class="form-control" ng-model="question.type" ng-options="type.id as type.name for type in questionTypes">
+							<option value="">-- select type -- </option>
+						</select>
+					</div>
+				</div>
+			</div>			
+			<div class="panel-footer">
+				<button class="btn btn-sm btn-danger" ng-click="questionDelete(question.id)">Delete</button>
+			</div>
+		</div>
+	</div>
+</form>
